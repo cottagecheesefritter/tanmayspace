@@ -15,6 +15,14 @@ tags:
   - homelab
   - binwalk
 ---
+## What is this blog and why you should read this
+
+This blog acts as a report on my first hacking project where I took pretty old but actively used SOHO routers and exploited a vulnerability where a bad actor can upload a modified firmware and the router will happily accept it as long as it passes a simple checksum. Now even though this is not an attempt to find a novel CVE but it documents my journey during this project, this report could be useful to you if you are planning to buy one or already own one of the routers mentioned in this post or any other router that was manufactured as late as 2020 but are now discontinued. And though this class of vulnerability is well documented in embedded security research, I could not find anyone who had specifically documented it on the ERLite-3 running `EdgeOS 3.x`, which is still receiving updates on hardware that is over a decade old. That is what makes it worth writing about. But in case you are a seasoned security researcher and were handed a link to this blog by yours truly, I will be in need of a job soon and it would be wonderful if you can read this and say "Oh my god we should hire this guy" (a man can hope). 
+
+I have categorized this blog post into multiple parts which takes you on a journey while asking questions like what a router is, how to get a router such as the ones covered in the post, how these routers get their firmware updates, what vulnerability was found on these routers, what I did to find the vulnerability, then I will talk about how I exploited it and finally a few notes on impact and the risk of owning such a router.
+
+Please use the table of contents if you want to skip to any specific section!
+
 ## Table of Contents
 
 * [What is this blog and why you should read this](#what-is-this-blog-and-why-you-should-read-this)
@@ -32,13 +40,6 @@ tags:
   * [Mitigation](#mitigation)
 * [Closing](#closing)
 
-## What is this blog and why you should read this
-
-This blog acts as a report on my first hacking project where I took pretty old but actively used SOHO routers and exploited a vulnerability where a bad actor can upload a modified firmware and the router will happily accept it as long as it passes a simple checksum. Now even though this is not an attempt to find a novel CVE but it documents my journey during this project, this report could be useful to you if you are planning to buy one or already own one of the routers mentioned in this post or any other router that was manufactured as late as 2020 but are now discontinued. And though this class of vulnerability is well documented in embedded security research, I could not find anyone who had specifically documented it on the ERLite-3 running `EdgeOS 3.x`, which is still receiving updates on hardware that is over a decade old. That is what makes it worth writing about. But in case you are a seasoned security researcher and were handed a link to this blog by yours truly, I will be in need of a job soon and it would be wonderful if you can read this and say "Oh my god we should hire this guy" (a man can hope). 
-
-I have categorized this blog post into multiple parts which takes you on a journey while asking questions like what a router is, how to get a router such as the ones covered in the post, how these routers get their firmware updates, what vulnerability was found on these routers, what I did to find the vulnerability, then I will talk about how I exploited it and finally a few notes on impact and the risk of owning such a router.
-
-Please use the table of contents if you want to skip to any specific section!
 ## Routers are used to route
 
 Routers are just small, low powered computers that are designed to forward data packets between computer networks. They do so by reading the destination IP address on incoming data packets and consults an internal routing table to determine the fastest path forward. You can assign IP addresses to your local endpoints (laptops, TV, smart home appliances etc.) using these routers and they can either be static meaning you decide what you want their address to be and you manually configure it or you can use something called a DHCP server to automatically assign IP addresses. They can also provide some level of security too, filtering out unwanted or malicious data traffic before it can reach your personal devices.
