@@ -4,18 +4,9 @@ _build:
   list: never
 ---
 
-
-Bloodhound is constantly updating so...
-
-```
-sudo pip install bloodhound
-```
-
-We need neo4j to *visualize* data pulled by Bloodhound :  Run --> `sudo neo4j console`
-
-![Pasted image 20251201125956](images/Pasted-image-20251201125956.png)
-
-In a new directory `bloodhound` (any other name is also fine)............
+The latest way you can use bloodhound (as of 27/10/26) is by installing `bloodhound-cli`  
+Installation steps: https://bloodhound.specterops.io/get-started/quickstart/community-edition-quickstart  
+another tool that greatly compliments bloodhound is a tool called `AD-Miner`, for usage and installation visit: https://github.com/AD-Security/AD_Miner  
 
 ## Process
 
