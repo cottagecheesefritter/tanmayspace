@@ -7,6 +7,7 @@ _build:
 The latest way you can use bloodhound (as of 27/10/26) is by installing `bloodhound-cli`  
 Installation steps: https://bloodhound.specterops.io/get-started/quickstart/community-edition-quickstart  
 another tool that greatly compliments bloodhound is a tool called `AD-Miner`, for usage and installation visit: https://github.com/AD-Security/AD_Miner  
+AD-Miner generates a pingcastle like report using the log4j analytics, which is nice!  
 
 ## Process
 
